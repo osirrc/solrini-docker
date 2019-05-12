@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+JSON=$2
+
+SOLR_VERSION=$(echo ${JSON} | jq -r '.opts.solr_version')
+SOLR_MEMORY=$(echo ${JSON} | jq -r '.opts.solr_memory')
+
+echo ${SOLR_VERSION}
+echo ${SOLR_MEMORY}
+
+# Clone Anserini
+git clone https://github.com/castorini/anserini.git && cd anserini
+
+# Build Anserini
+mvn clean package appassembler:assemble -DskipTests
+
+# Download Solr
+wget https://archive.apache.org/dist/lucene/solr/${SOLR_VERSION}/solr-${SOLR_VERSION}.tgz
+
+# Extract archive
+mkdir solrini && tar -zxvf solr*.tgz -C solrini --strip-components=1
+
+# Start Solr
+solrini/bin/solr start -c -m ${SOLR_MEMORY} -force
+
+# Bootstrap Solr with anserini configsets.
+pushd src/main/resources/solr && ./solr.sh ../../../../solrini localhost:9983 && popd

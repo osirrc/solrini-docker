@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+JSON=$2
+
+SOLR_MEMORY=$(echo ${JSON} | jq -r '.opts.solr_memory')
+
+/work/anserini/solrini/bin/solr start -c -m ${SOLR_MEMORY} -force
