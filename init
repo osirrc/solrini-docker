@@ -2,10 +2,11 @@
 
 JSON=$2
 
+# Args from jig
 SOLR_MEMORY=$(echo ${JSON} | jq -r '.opts.solr_memory')
-SOLR_VERSION=$(echo ${JSON} | jq -r '.opts.solr_version')
-
 [[ ${SOLR_MEMORY} = "null" ]] && SOLR_MEMORY=8G
+
+SOLR_VERSION=$(echo ${JSON} | jq -r '.opts.solr_version')
 [[ ${SOLR_VERSION} = "null" ]] && SOLR_VERSION=7.6.0
 
 # Clone Anserini

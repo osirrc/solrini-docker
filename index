@@ -2,8 +2,10 @@
 
 JSON=$2
 
+# The number of collections
 NUM_COLLECTIONS=$(echo ${JSON} | jq -r '.collections | length')
 
+# For each collection...
 for i in $(seq 0 $((${NUM_COLLECTIONS} - 1))); do
 
     COLLECTION_NAME=$(echo ${JSON} | jq -r ".collections[$i].name")
