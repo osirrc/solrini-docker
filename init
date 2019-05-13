@@ -2,11 +2,11 @@
 
 JSON=$2
 
-SOLR_VERSION=$(echo ${JSON} | jq -r '.opts.solr_version')
 SOLR_MEMORY=$(echo ${JSON} | jq -r '.opts.solr_memory')
+SOLR_VERSION=$(echo ${JSON} | jq -r '.opts.solr_version')
 
-echo ${SOLR_VERSION}
-echo ${SOLR_MEMORY}
+[[ ${SOLR_MEMORY} = "null" ]] && SOLR_MEMORY=8G
+[[ ${SOLR_VERSION} = "null" ]] && SOLR_VERSION=7.6.0
 
 # Clone Anserini
 git clone https://github.com/castorini/anserini.git && cd anserini

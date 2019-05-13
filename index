@@ -2,17 +2,37 @@
 
 JSON=$2
 
-COLLECTION_NAME=$(echo ${JSON} | jq -r '.collections[0].name')
-COLLECTION_PATH=$(echo ${JSON} | jq -r '.collections[0].path')
+NUM_COLLECTIONS=$(echo ${JSON} | jq -r '.collections | length')
 
-/work/anserini/solrini/bin/solr create -c ${COLLECTION_NAME} -n anserini -force
+for i in $(seq 0 $((${NUM_COLLECTIONS} - 1))); do
 
-sh /work/anserini/target/appassembler/bin/IndexCollection \
-    -collection TrecCollection -generator JsoupGenerator \
-    -threads $(nproc) \
-    -solr -solr.batch 1000 -solr.commitWithin 300 -solr.index ${COLLECTION_NAME} -solr.zkUrl localhost:9983 \
-    -input ${COLLECTION_PATH} \
-    -storePositions -storeDocvectors -storeRawDocs
+    COLLECTION_NAME=$(echo ${JSON} | jq -r ".collections[$i].name")
+    COLLECTION_PATH=$(echo ${JSON} | jq -r ".collections[$i].path")
+
+    if [[ ${COLLECTION_NAME} = "core17" ]]; then
+        COLLECTION="NewYorkTimesCollection"
+        GENERATOR="JsoupGenerator"
+    elif [[ ${COLLECTION_NAME} = "core18" ]]; then
+        COLLECTION="WashingtonPostCollection"
+        GENERATOR="WapoGenerator"
+    elif [[ ${COLLECTION_NAME} = "robust04" ]]; then
+        COLLECTION="TrecCollection"
+        GENERATOR="JsoupGenerator"
+    else
+        echo "Unsupported collection"
+        exit -1
+    fi
+
+    /work/anserini/solrini/bin/solr create -c ${COLLECTION_NAME} -n anserini -force
+
+    sh /work/anserini/target/appassembler/bin/IndexCollection \
+        -collection ${COLLECTION} -generator ${GENERATOR} \
+        -threads $(nproc) \
+        -solr -solr.batch 1000 -solr.commitWithin 300 -solr.index ${COLLECTION_NAME} -solr.zkUrl localhost:9983 \
+        -input ${COLLECTION_PATH} \
+        -storePositions -storeDocvectors -storeRawDocs
+
+done
 
 # Stop Solr
 /work/anserini/solrini/bin/solr stop -all

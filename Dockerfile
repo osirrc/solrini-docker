@@ -9,6 +9,7 @@ COPY init /
 COPY interact /
 COPY search /
 
+# Solr port
 EXPOSE 8983
 
 # Set working directory

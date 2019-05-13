@@ -4,4 +4,6 @@ JSON=$2
 
 SOLR_MEMORY=$(echo ${JSON} | jq -r '.opts.solr_memory')
 
+[[ ${SOLR_MEMORY} = "null" ]] && SOLR_MEMORY=8G
+
 /work/anserini/solrini/bin/solr start -c -m ${SOLR_MEMORY} -force
