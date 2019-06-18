@@ -3,9 +3,9 @@ services:
 script:
   - docker build -t solrini .
 after_success:
-  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
-      docker push solrini;
+      docker push solrini ;
     fi
 env:
   global:
