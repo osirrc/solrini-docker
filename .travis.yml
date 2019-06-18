@@ -1,7 +1,12 @@
 services:
-- docker
+  - docker
 script:
-- docker build -t solrini .
+  - docker build -t solrini .
+after_success:
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
+      docker push solrini;
+    fi
 env:
   global:
   - secure: aw9xsewlj5MqpgfMPMxhbRpWwQN+FZrRNDn7X7yNSbHgaDJGruDD9qpJw+jJYi7X9WYWe5bAHtsIWEHjTpXRHO3L2wkR9NHM2N0Vc9MCiggYE9zTaC/avdtdepBZXnEPjTmdojVk65IhcwXWFjEJlbAycLYTBN2D/MoQllCyzfUDU9bw2FkCKheBR/ate1IirU7opeNxy8fQkHpLKMRjjTve8A4+4JnURG7kxJVl7NeqXzAO+4v02BiwbXZmmsBy+d14AL99IxRxteQQJhZpxufryP78hfwiQOutjZamdX26thnlvh+UKfbdAWiopxHiVNmF3LlUTgmoMQxstSxcu6za5LXDSq9Ad0IPqvCdAxKOZeQT/f7b5YEakwyhsMZfcQtO3fpfeP7TgLcNuu12dJH/599ZRxgG2rabOFWBtg736FfYJmruQGJbiiv4vdEOcug3ttw1k9tsHsv0qGqGw4EDY2VEY3FBv9GK1fu1rTbv8NBdFmfzjxCo0e1GYOXDgXGofAs50Ooln2PGdYWwHtrMVEiQQa2EOB1Aa0Fv6xehz4kDtt9TH5t3hho459a+t3gJZvExAfCdDzWRD/HcosqX2mc/7ZDCA3eDHREA7O8PmUivtGk9x+Uf7mb+Dw8fDLA9XZI84510lOwfthjcoB0KxRJ49iQmXZVhMYRdgZ0=
