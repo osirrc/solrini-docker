@@ -4,7 +4,7 @@
 python run.py prepare \
   --repo osirrc2019/solrini \
   --collections robust04=/home/ryan/sync/ir/collections/disk45=trectext \
-  --opts solr_memory=8G solr_version 7.6.0
+  --opts solr_memory=8G solr_version 8.0.0
 ```
 
 # Interact
