@@ -5,7 +5,7 @@ script:
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - if [[ ( "$TRAVIS_BRANCH" == "master" ) || ( -n "$TRAVIS_TAG" ) ]]; then
-      docker push "$REPO":${TRAVIS_BRANCH:-master}
+      docker push "$REPO":${TRAVIS_TAG:-master}
     fi
 env:
   global:
