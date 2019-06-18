@@ -20,6 +20,15 @@ for i in $(seq 0 $((${NUM_COLLECTIONS} - 1))); do
     elif [[ ${COLLECTION_NAME} = "robust04" ]]; then
         COLLECTION="TrecCollection"
         GENERATOR="JsoupGenerator"
+    elif [[ ${COLLECTION_NAME} = "gov2" ]]; then
+        COLLECTION="TrecwebCollection"
+        GENERATOR="JsoupGenerator"
+    elif [[ ${COLLECTION_NAME} = "cw09b" ]]; then
+        COLLECTION="ClueWeb09Collection"
+        GENERATOR="JsoupGenerator"
+    elif [[ ${COLLECTION_NAME} = "cw12b" ]]; then
+        COLLECTION="ClueWeb12Collection"
+        GENERATOR="JsoupGenerator"
     else
         echo "Unsupported collection"
         exit -1
