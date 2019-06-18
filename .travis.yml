@@ -5,7 +5,7 @@ script:
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
-      docker push solrini ;
+      docker push osirrc2019/solrini ;
     fi
 env:
   global:
