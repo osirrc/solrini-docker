@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/osirrc/solrini-docker.svg?branch=master)](https://travis-ci.com/osirrc/solrini-docker)
 [![Docker Build Status](https://img.shields.io/docker/cloud/build/osirrc2019/solrini.svg)](https://hub.docker.com/r/osirrc2019/solrini)
-[![DOI](https://zenodo.org/badge/176356474.svg)](https://zenodo.org/badge/latestdoi/176356474)
+[![DOI](https://zenodo.org/badge/182200684.svg)](https://zenodo.org/badge/latestdoi/182200684)
 
 [**Ryan Clancy**](https://github.com/r-clancy/) and [**Jimmy Lin**](https://github.com/lintool/)
 
