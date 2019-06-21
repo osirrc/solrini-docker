@@ -7,10 +7,10 @@ SOLR_MEMORY=$(echo ${JSON} | jq -r '.opts.solr_memory')
 [[ ${SOLR_MEMORY} = "null" ]] && SOLR_MEMORY=8G
 
 SOLR_VERSION=$(echo ${JSON} | jq -r '.opts.solr_version')
-[[ ${SOLR_VERSION} = "null" ]] && SOLR_VERSION=7.6.0
+[[ ${SOLR_VERSION} = "null" ]] && SOLR_VERSION=8.0.0
 
 # Clone Anserini
-git clone https://github.com/castorini/anserini.git && cd anserini
+git clone https://github.com/castorini/anserini.git --branch=anserini-0.5.1 && cd anserini
 
 # Build Anserini
 mvn clean package appassembler:assemble -DskipTests
