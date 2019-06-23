@@ -22,7 +22,7 @@ The following `jig` command can be used to index TREC disks 4/5 for `robust04`:
 ```
 python run.py prepare \
   --repo osirrc2019/solrini \
-  --tag v0.1.0 \
+  --tag <tag> \
   --collections robust04=/path/to/disk45=trectext \
   --opts solr_memory=8G solr_version 8.0.0
 ```
@@ -32,8 +32,10 @@ The following `jig` command can be used to perform a retrieval run on the collec
 ```
 python run.py interact \
   --repo osirrc2019/solrini \
-  --tag v0.1.0
+  --tag <tag>
 ```
+
+Where `<tag>` is a valid [tag](https://github.com/osirrc/solrini-docker/tags).
 
 Use `docker ps` to see the container running with a port mapping that looks like `0.0.0.0:[port]->8983/tcp`. Navigate to `0.0.0.0:[port]` in your web browser to view Solr.
 
