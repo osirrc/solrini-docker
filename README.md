@@ -13,7 +13,7 @@ The [OSIRRC 2019 image library](https://github.com/osirrc/osirrc2019-library) co
 + Supported test collections: `robust04`, `core17`, `core18` (newswire); `gov2`, `cw09b`, `cw12b` (web)
 + Supported hooks: `init`, `index`, `interact`
 
-The search results are the same Anserini, thus we use those results.
+The search results are the same as Anserini, thus we use those results.
 
 ## Quick Start
 
@@ -118,4 +118,4 @@ The `index` [script](index) indexes the collection with Solr.
 
 ## Reviews
 
-+ Documentation reviewed at commit [`xxxxx`](xxxxx) (xx/xx/xxxx) by [xxxxx](https://github.com/xxxxx/).
++ Documentation reviewed at commit [`e843960`](https://github.com/osirrc/solrini-docker/commit/e843960865992611c58003245e4df53668a58ca1) (2019-06-24) by [Ze Zhong Wu](https://github.com/charW/).
